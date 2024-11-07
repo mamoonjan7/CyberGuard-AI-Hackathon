@@ -7,50 +7,55 @@
 
 An advanced Natural Language Processing system that classifies cybercrime descriptions using state-of-the-art transformer models. Built to help law enforcement and cybersecurity professionals quickly categorize and analyze cybercrime reports.
 
-## Quick Links
-- [Project Repository](https://github.com/mamoonjan7/CyberGuard-AI-Hackathon)
-- [Demo Video](https://drive.google.com/file/d/1cQKf88mvZJUl9FMVszNr0WOVnjyAZicR/view?usp=sharing)
-- [Pre-trained Model](https://drive.google.com/file/d/17ebsgn96zfayUuRWjcZp0698eflxZuYF/view?usp=sharing)
-- [Training Notebook](https://github.com/mamoonjan7/CyberGuard-AI-Hackathon/blob/main/Hakathon_crime.ipynb)
+## 🔗 Quick Links and Downloads
 
-## Table of Contents
-- [Features](#features)
-- [System Requirements](#system-requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Model Details](#model-details)
-- [Contributing](#contributing)
-- [Support](#support)
+### Essential Resources
+- **GitHub Repository:** [CyberGuard-AI-Hackathon](https://github.com/mamoonjan7/CyberGuard-AI-Hackathon)
+- **Pre-trained Model:** Download [final_model.pt](https://drive.google.com/file/d/17ebsgn96zfayUuRWjcZp0698EflxZuYF/view?usp=sharing)
+- **Demo Video:** Watch [hakathon_Crime.mp4](https://drive.google.com/file/d/1cQKf88mvZJUl9FMVszNr0WOVnjyAZicR/view?usp=sharing)
+- **Training Code:** View [Hakathon_crime.ipynb](https://github.com/mamoonjan7/CyberGuard-AI-Hackathon/blob/main/Hakathon_crime.ipynb)
 
-## Features
+## 📚 Table of Contents
+- [Features](#-features)
+- [Requirements](#-requirements)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Model Architecture](#-model-architecture)
+- [Performance](#-performance)
+- [Troubleshooting](#-troubleshooting)
+- [Support](#-support)
+
+## ✨ Features
 
 ### Core Capabilities
 - Real-time cybercrime text classification
 - Multi-category prediction support
 - Confidence scoring for predictions
 - Batch processing capabilities
+- Interactive command-line interface
+- GPU-accelerated inference
 
 ### Technical Features
 - DistilBERT-based transformer architecture
 - Smart label encoding for unknown categories
-- GPU-accelerated inference
 - Efficient text preprocessing pipeline
-- Interactive command-line interface
+- High accuracy classification results
+- Comprehensive statistical analysis
 
-## System Requirements
+## 💻 Requirements
 
-### Hardware
-- CPU: Intel/AMD 64-bit processor
-- RAM: 8GB minimum (16GB recommended)
-- Storage: 2GB free space
-- GPU: NVIDIA GPU with 4GB+ VRAM (tested on RTX 3050 Ti)
+### Hardware Requirements
+- **CPU:** Intel/AMD 64-bit processor
+- **RAM:** 8GB minimum (16GB recommended)
+- **Storage:** 2GB free space
+- **GPU:** NVIDIA GPU with 4GB+ VRAM (tested on RTX 3050 Ti)
 
-### Software
-- Operating System: Windows 10/Linux/MacOS
-- Python: 3.8.20 or higher
-- CUDA: 12.1 (for GPU acceleration)
+### Software Requirements
+- **Operating System:** Windows 10/Linux/MacOS
+- **Python:** 3.8.20 or higher
+- **CUDA:** 12.1 (for GPU acceleration)
 
-### Dependencies
+### Required Dependencies
 ```
 torch==2.4.1
 transformers==4.46.2
@@ -61,7 +66,7 @@ tqdm==4.65.0
 pandas==2.0.3
 ```
 
-## Installation
+## 🛠️ Installation
 
 1. **Clone Repository**
    ```bash
@@ -69,7 +74,7 @@ pandas==2.0.3
    cd CyberGuard-AI-Hackathon
    ```
 
-2. **Create Virtual Environment**
+2. **Set Up Python Environment**
    ```bash
    # Windows
    python -m venv venv
@@ -80,45 +85,45 @@ pandas==2.0.3
    source venv/bin/activate
    ```
 
-3. **Install Requirements**
+3. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Download Model**
-   - Get the pre-trained model from [Google Drive](https://drive.google.com/file/d/17ebsgn96zfayUuRWjcZp0698eflxZuYF/view?usp=sharing)
-   - Place `final_model.pt` in the project root directory
+4. **Download Pre-trained Model**
+   - Download [final_model.pt](https://drive.google.com/file/d/17ebsgn96zfayUuRWjcZp0698EflxZuYF/view?usp=sharing)
+   - Place in project root directory
 
-## Usage
+## 📊 Usage
 
-### Interactive Interface
+### Interactive Command Line Interface
 ```bash
 python interactive_predictor.py
 ```
 
-This launches the interactive CLI with options to:
-1. Test individual text inputs
-2. Process batch examples
-3. View detailed statistics
+The interface provides three options:
+1. Test with custom input
+2. Test with examples from test dataset
+3. Exit
 
-### Python API
+### Python API Usage
 ```python
 from interactive_predictor import CybercrimePredictor
 
-# Initialize
+# Initialize predictor
 predictor = CybercrimePredictor("final_model.pt")
 
-# Single prediction
-text = "Suspicious email asking for bank credentials"
+# Make single prediction
+text = "Received suspicious email asking for bank credentials"
 category, confidence = predictor.predict(text)
 print(f"Category: {category}")
 print(f"Confidence: {confidence:.2%}")
 
-# Batch processing
+# Batch processing example
 texts = [
-    "Unauthorized credit card charges detected",
-    "Website asking for sensitive information",
-    "Computer locked with ransom demand"
+    "Unauthorized credit card transactions noticed",
+    "Email claiming lottery win asking for details",
+    "Ransomware encrypted all files"
 ]
 
 for text in texts:
@@ -128,76 +133,87 @@ for text in texts:
     print(f"Confidence: {confidence:.2%}")
 ```
 
-## Model Details
+## 🧠 Model Architecture
 
-### Architecture
-- Base Model: DistilBERT
-- Custom classification head
-- Smart label encoding system
-- Efficient preprocessing pipeline
+### Components
+1. **Text Preprocessor:**
+   - URL and email detection
+   - Phone number identification
+   - Special character handling
+   - Efficient text cleaning
 
-### Training
-- Training details available in [Hakathon_crime.ipynb](https://github.com/mamoonjan7/CyberGuard-AI-Hackathon/blob/main/Hakathon_crime.ipynb)
-- GPU-accelerated training process
-- Optimized for cybercrime classification
+2. **Smart Label Encoder:**
+   - Semantic similarity matching
+   - Unknown category handling
+   - Sentence transformer encoding
 
-### Performance
-- Fast inference time with GPU acceleration
-- Robust handling of various cybercrime categories
-- Automatic handling of unseen categories
+3. **Core Model:**
+   - Base: DistilBERT
+   - Custom classification head
+   - GPU optimization
 
-## Project Structure
+## 🔍 Troubleshooting
+
+### Common Issues and Solutions
+
+1. **Model Loading Errors**
+   ```
+   Check:
+   - Model file exists in correct location
+   - File permissions are correct
+   - Sufficient disk space
+   ```
+
+2. **GPU Memory Issues**
+   ```
+   Solutions:
+   - Close other GPU applications
+   - Reduce batch size
+   - Free GPU memory
+   ```
+
+3. **Dependency Conflicts**
+   ```
+   Solutions:
+   - Use exact versions from requirements.txt
+   - Create fresh virtual environment
+   - Update CUDA if using GPU
+   ```
+
+## 📂 Project Structure
 ```
 CyberGuard-AI-Hackathon/
-├── interactive_predictor.py
-├── requirements.txt
-├── Hakathon_crime.ipynb
-├── final_model.pt
-└── README.md
+├── interactive_predictor.py     # Main prediction interface
+├── requirements.txt            # Package dependencies
+├── Hakathon_crime.ipynb       # Training notebook
+├── final_model.pt             # Pre-trained model
+└── README.md                  # Documentation
 ```
 
-## Troubleshooting
-
-### Common Issues
-1. **Model Loading**
-   ```
-   Solution: Ensure model file is in correct location
-   ```
-
-2. **GPU Memory**
-   ```
-   Solution: Free GPU memory or reduce batch size
-   ```
-
-3. **Dependencies**
-   ```
-   Solution: Use exact versions from requirements.txt
-   ```
-
-## Contributing
-1. Fork repository
-2. Create feature branch
-3. Commit changes
-4. Push to branch
-5. Create Pull Request
-
-## Creator
+## 👨‍💻 Creator
 **Muhammad Mamoon jan**
 - GitHub: [mamoonjan7](https://github.com/mamoonjan7)
 
-## Support
-For issues or questions:
+## 🤝 Contributing
+1. Fork repository
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
+
+## 🆘 Support
+For assistance:
 1. Create GitHub issue
-2. Watch tutorial video
+2. Watch [demo video](https://drive.google.com/file/d/1cQKf88mvZJUl9FMVszNr0WOVnjyAZicR/view?usp=sharing)
 3. Check troubleshooting guide
 
-## Disclaimer
-This tool is for cybersecurity research and legitimate use only. Use responsibly and in accordance with applicable laws and regulations.
-
-## License
+## 📝 License
 MIT License
 
-## Acknowledgments
-- HuggingFace for transformers
+## ⚠️ Disclaimer
+This tool is intended for legitimate cybersecurity research and analysis only. Use responsibly and in accordance with applicable laws and regulations.
+
+## 🙏 Acknowledgments
+- HuggingFace for transformers library
 - PyTorch development team
-- Cybersecurity community
+- Cybersecurity community for datasets
